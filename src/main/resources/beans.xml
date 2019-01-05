@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<beans>
+    <bean id="user" class="test.entity.User" scope="prototype">
+        <constructor-arg value="1001"></constructor-arg>
+        <constructor-arg value="xiaoye"></constructor-arg>
+    </bean>
+
+    <bean id="lost" class="test.entity.Lost">
+        <property name="id" value="1001"></property>
+        <property name="user" ref="user"></property>
+    </bean>
+
+    <bean id="teacher1" class="test.entity.User">
+        <constructor-arg value="1001"></constructor-arg>
+        <constructor-arg value="wang"></constructor-arg>
+    </bean>
+
+    <bean id="teacher2" class="test.entity.User">
+        <constructor-arg value="1002"></constructor-arg>
+        <constructor-arg value="li"></constructor-arg>
+    </bean>
+
+    <bean id="school" class="test.entity.School">
+        <property name="teachers">
+            <list>
+                <ref bean="teacher1"></ref>
+                <ref bean="teacher2"></ref>
+            </list>
+        </property>
+        <property name="teacherMap">
+            <map>
+                <entry>
+                    <key value="1001"></key>
+
+                    <ref bean="teacher1"></ref>
+                </entry>
+                <entry>
+                    <key value="1002"></key>
+
+                    <ref bean="teacher2"></ref>
+                </entry>
+            </map>
+        </property>
+    </bean>
+
+    <component-scan base-package="test.entity"></component-scan>
+</beans>
